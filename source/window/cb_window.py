@@ -10,8 +10,7 @@ from source.utils import cb_videoplayer, cb_notification, cb_discordrpc, cb_prof
 from source.login import cb_login, login_utils
 from source.download import cb_rclone, cb_downloadpage
 from source.design import ui_window, py_toggle
-from ... import cb_utils
-import cb_gamepage
+from source.window import window_utils, cb_gamepage
 #from cb_files.apps.download import cb_download
 from ..download import cb_rclone
 from source.modules import *
@@ -101,7 +100,7 @@ class MainWindow(QMainWindow):
         Reads binary file and parses string to get username
         and uses getpass module to get pc username"""
         if os.path.exists('config\\settings.dat'):
-            self.username, password = login_utils.get_login_details(cb_utils.readbinary('config\\settings.dat'))
+            self.username, password = login_utils.get_login_details(window_utils.readbinary('config\\settings.dat'))
             self.pc_user = getpass.getuser()
         else:
             self.username = cb_login.username

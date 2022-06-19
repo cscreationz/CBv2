@@ -15,7 +15,7 @@ from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
     QRadialGradient)
 from PySide2.QtWidgets import *
 
-from cb_files.images import resource_rc
+from source.images import resource_rc
 
 class Ui_Update(object):
     def setupUi(self, Form):

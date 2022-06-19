@@ -3,7 +3,7 @@ import os
 import json
 
 version = '2.35'
-userprofile = os.environ['USERPROFILE'] + "\\.config" #Check for rclone config
+userprofile = rf"{os.path.expanduser('~')} + /.config" #Check for rclone config
 
 def longInitialization(arg):
     """Background checks to run the app smoothly"""

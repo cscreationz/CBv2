@@ -1,13 +1,11 @@
 from PySide2.QtWidgets import QWidget, QGraphicsDropShadowEffect, QFileDialog, QPushButton
-import download_utils, cb_rclone
+from source.download import download_utils, cb_rclone
 from source.design import ui_download
 from PySide2.QtGui import QIcon, QColor, QCursor, QPixmap
 from PySide2.QtCore import Qt, QCoreApplication, QProcess, QTimer, QSize
 from PySide2 import QtCore
 from source.login import cb_login, login_utils
 from source.utils import cb_notification, cb_widgets
-from ... import cb_utils
-import cb_rclone
 import os
 import getpass
 import json
@@ -66,13 +64,13 @@ class DownloadPage(QWidget):
         self.downloadpageui.download_location.textChanged.connect(self.disk_free)
 
         self.checks()
-        space = psutil.disk_usage("C:").free #Display amount of free space
-        proper_socks = self.convert_size(space)
-        self.downloadpageui.available_space.setText(f'Available Disk Space: {proper_socks}')
+        #space = psutil.disk_usage("C:").free #Display amount of free space
+        #proper_socks = self.convert_size(space)
+        #self.downloadpageui.available_space.setText(f'Available Disk Space: {proper_socks}')
 
     def checks(self):
         if os.path.exists('config\\settings.dat'):
-            self.username, password = login_utils.get_login_details(cb_utils.readbinary('config\\settings.dat'))
+            self.username, password = login_utils.get_login_details(download_utils.readbinary('config\\settings.dat'))
             self.pc_user = getpass.getuser()
         else:
             self.username = cb_login.username
@@ -86,8 +84,8 @@ class DownloadPage(QWidget):
         try:
             #free_space = psutil.disk_usage(text[0:2]).free
             #free_space_readable = cb_modules.convert_size(free_space)
-
-            self.downloadpageui.available_space.setText(f'Available Disk Space: {download_utils.freeDiskSpace(text)}')
+            pass
+            #self.downloadpageui.available_space.setText(f'Available Disk Space: {download_utils.freeDiskSpace(text)}')
         except:
             self.downloadpageui.available_space.setText('Unknown')
 
@@ -175,9 +173,9 @@ class DownloadPage(QWidget):
 
     def checkIfHasSaveProblem(self):
         self.fucksake = 0
-        for i in cb_requests.save_gae:
-            if self.game_name == i:
-                self.fucksake += 1
+        #for i in cb_requests.save_gae:
+            #if self.game_name == i:
+                #self.fucksake += 1
 
     def load_save(self): #Check if save already exists on target pc
         self.downloadpageui.loadsave.setVisible(False)
@@ -217,11 +215,13 @@ class DownloadPage(QWidget):
 
     def desktopshortcut(self):
         if self.downloadpageui.create_shortcut.isChecked():
-            download_utils.createShortcut(DESKTOP_DIRECTORY.format(self.pc_user), self.download_location, self.game_name, self.exepath)
+            pass
+            #download_utils.createShortcut(DESKTOP_DIRECTORY.format(self.pc_user), self.download_location, self.game_name, self.exepath)
             #destination = f"C:\\Users\\{self.pc_user}\\Desktop"
             #cb_modules.createshortcut(DESKTOP_DIRECTORY.format(self.pc_user), self.download_location, self.game_name, self.exepath)
         if self.downloadpageui.create_shortcut_2.isChecked():
-            download_utils.createShortcut(STARTMENU_DIRECTORY.format(self.pc_user), self.download_location, self.game_name, self.exepath)
+            pass
+            #download_utils.createShortcut(STARTMENU_DIRECTORY.format(self.pc_user), self.download_location, self.game_name, self.exepath)
             #destination = f"C:\\Users\\{self.pc_user}\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs"
             #cb_modules.createshortcut(destination, self.download_location, self.pc_user, self.game_name, self.exepath)
 
@@ -256,16 +256,17 @@ class DownloadPage(QWidget):
         if os.path.exists('config\\downloads.json'):
             with open('config\\downloads.json', 'r+') as f:
                 x = json.load(f)
-                jsonString = download_utils.updateJson(x, self.game_name, self.image, self.download_location, self.exepath)
+                #jsonString = download_utils.updateJson(x, self.game_name, self.image, self.download_location, self.exepath)
                 #x = self.updatejsonexists(x)
                 f.seek(0)
-                f.write(json.dumps(jsonString, indent=4))
+                #f.write(json.dumps(jsonString, indent=4))
                 f.truncate()
         else:
             with open('config\\downloads.json', 'w') as f:
-                jsonString = download_utils.updateJson({}, self.game_name, self.image, self.download_location, self.exepath)
+                #jsonString = download_utils.updateJson({}, self.game_name, self.image, self.download_location, self.exepath)
                 #x = self.updatejsonnew()
-                f.write(json.dumps(jsonString, indent=4))
+                pass
+                #f.write(json.dumps(jsonString, indent=4))
 
     def downloaded_game_button(self):
         button = cb_widgets.create_button(width=177, 

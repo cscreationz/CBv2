@@ -15,9 +15,9 @@ from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
     QRadialGradient)
 from PySide2.QtWidgets import *
 
-from cb_files.images import resource_rc
+from source.images import resource_rc
 
-from cb_files.resources import font
+from source.resources import font
 
 class Ui_profilep(object):
     def setupUi(self, Form):

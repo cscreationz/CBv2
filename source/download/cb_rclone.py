@@ -1,8 +1,7 @@
 from PySide2.QtCore import QProcess, QTimer
 from PySide2.QtGui import QPixmap
 from source.utils import cb_notification
-from ... import cb_utils
-import download_utils
+from source.download import download_utils
 import threading, os
 
 class RcloneDownloader():
@@ -119,11 +118,11 @@ class RcloneDownloader():
         except:
             self.download_location = self.download_location
         if os.path.exists('config\\downloads.json'):
-            fileObject, jsonContent = cb_utils.readjson('config\\downloads.json')
+            fileObject, jsonContent = download_utils.readjson('config\\downloads.json')
             download_utils.updateExistingJson(jsonContent)
             download_utils.rewriteJsonFile(fileObject, jsonContent)
         else:
-            fileObject = cb_utils.writejson('config\\downloads.json')
+            fileObject = download_utils.writejson('config\\downloads.json')
             jsonObject = download_utils.createNewJson()
             download_utils.writeJsonFile(fileObject, jsonObject)
 

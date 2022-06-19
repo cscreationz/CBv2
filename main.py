@@ -8,8 +8,9 @@ from source.login import cb_login, login_utils
 from source.window import cb_window
 from source.utils import cb_messagebox, cb_splashscreen, cb_notification
 
-list_of_folders_needed: List[str] = ['config', 'resources']
-files_to_delete: List[str] = ['config\\progress.txt', 'CB Updater.exe']
+absolute_path = os.path.abspath(rf"{os.getcwd()}/")
+list_of_folders_needed: List[str] = [rf'{absolute_path} + config', rf'{absolute_path} + resources']
+files_to_delete: List[str] = [rf'{absolute_path} + config/progress.txt', rf'{absolute_path} + CB Updater.exe']
 movie: str = ':/games/loading'
 
 if __name__ == '__main__':
@@ -21,7 +22,7 @@ if __name__ == '__main__':
         cb_utils.check_if_files_exist(list_of_folders_needed)
         cb_utils.delete_files(files_to_delete)
         if os.path.exists('config\\settings.dat'):
-            username, password = login_utils.get_login_details(cb_utils.readbinary('config\\settings.dat'))
+            username, password = login_utils.get_login_details(cb_utils.readbinary(rf'{absolute_path} + config/settings.dat'))
             if login_utils.login(username, password):
                 splashscreen = cb_splashscreen.MovieSplashScreen(movie)
                 splashscreen.show()
@@ -33,7 +34,7 @@ if __name__ == '__main__':
                     None, 'Auth Failed', icon=QPixmap(":/games/window2"), corner='TopRight', desktop=True)
                 login_window = cb_login.LoginPage()
                 login_window.show()
-                cb_utils.delete_files(['config\\settings.dat'])
+                cb_utils.delete_files([rf'{absolute_path} + config/settings.dat'])
         else:
             login_window = cb_login.LoginPage()
             login_window.show()

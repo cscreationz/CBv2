@@ -12,8 +12,8 @@
 
 # MAIN FILE
 # ///////////////////////////////////////////////////////////////
-from cb_files.design.ui_window import *
-from cb_files.widgets.custom_grips import *
+from source.design.ui_window import *
+from source.widgets.custom_grips import *
 
 from PySide2.QtCore import *
 from PySide2.QtGui import *

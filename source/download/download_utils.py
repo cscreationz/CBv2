@@ -1,8 +1,7 @@
-import os, json
+import os, json, pickle
 from PySide2.QtWidgets import QFileDialog
 from PySide2.QtCore import QProcess
-import psutil
-from ... import cb_utils
+#import psutil
 import requests
 import zipfile
 
@@ -10,15 +9,30 @@ def browseFile():
     fileDirectory = QFileDialog.getExistingDirectory()
     return fileDirectory
 
-def freeDiskSpace(text):
+def readjson(file):
+    with open(file, 'r+') as f:
+        data = json.load(f)
+    return f, data
+
+def writejson(file):
+    with open(file, 'w') as f:
+        return f
+
+def readbinary(file: str) -> str:
+    """Returns binary data from a given file as a string"""
+    with open(file, 'rb') as f:
+        data: str = pickle.load(f)
+    return data
+
+'''def freeDiskSpace(text):
     freeSpace = cb_utils.convert_size(psutil.disk_usage(text[0:2]).free)
-    return freeSpace
+    return freeSpace'''
 
 def verifyLocation(directory):
     if directory.endswith("\\"):
         return False
 
-def createShortcut(directory, download_location, game_name, exepath):
+'''def createShortcut(directory, download_location, game_name, exepath):
     path = os.path.join(directory, f"{game_name}.lnk")
     target = f"{download_location}\\{game_name}{exepath}"
     wDir = f"{download_location}\\{game_name}"
@@ -28,7 +42,7 @@ def createShortcut(directory, download_location, game_name, exepath):
     shortcut.Targetpath = target
     shortcut.WorkingDirectory = wDir
     shortcut.IconLocation = icon
-    shortcut.save()
+    shortcut.save()'''
 
 def countMatchedSaves(stdout, game_name):
     matched_save_counter = 0

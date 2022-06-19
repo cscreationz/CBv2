@@ -2,7 +2,7 @@ import os
 import pickle
 import math
 from typing import List
-import win32com
+#import win32com
 import json
 
 def check_if_files_exist(folders: List[str]) -> None: 
@@ -34,7 +34,7 @@ def writejson(file):
     with open(file, 'w') as f:
         return f
 
-def writebinary(file: str, details: List[str, bytes]) -> None:
+def writebinary(file: str, details: List) -> None:
     """Writes a binary file to a given location with the given details"""
     with open(file, 'wb') as f:
         pickle.dump(details, f)
@@ -46,7 +46,7 @@ def convert_size(size_bytes):
     s = round(size_bytes / p, 2)
     return "%s %s" % (s, size_name[i])
 
-def createshortcut(destination, download_location, pc_user, game_name, exepath):
+'''def createshortcut(destination, download_location, pc_user, game_name, exepath):
     path = os.path.join(destination, f"{game_name}.lnk")
     target = f"{download_location}\\{game_name}{exepath}"
     wDir = f"{download_location}\\{game_name}"
@@ -56,4 +56,4 @@ def createshortcut(destination, download_location, pc_user, game_name, exepath):
     shortcut.Targetpath = target
     shortcut.WorkingDirectory = wDir
     shortcut.IconLocation = icon
-    shortcut.save()
+    shortcut.save()'''

@@ -12,7 +12,7 @@
 
 # MAIN FILE
 # ///////////////////////////////////////////////////////////////
-from cb_files.apps.cb_window import *
+from source.window.cb_window import *
 
 from PySide2 import QtCore, QtGui, QtWidgets, QtUiTools
 from PySide2.QtCore import (QCoreApplication, QEventLoop, QMetaObject, QObject, QPoint, QRect, QSize, QThread, Signal, Qt, QEvent, QProcess, QTimer)

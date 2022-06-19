@@ -1,6 +1,6 @@
-from cb_files.design import ui_profile
-from cb_files.apps import cb_login
-from cb_files.resources import games
+from source.design import ui_profile
+from source.login import cb_login
+from source.resources import games
 
 from PySide2 import QtCore, QtGui, QtWidgets, QtUiTools
 from PySide2.QtCore import (QCoreApplication, QEventLoop, QMetaObject, QObject, QPoint, QRect, QSize, QThread, Signal, Qt, QEvent, QProcess, QTimer)

@@ -1,5 +1,5 @@
-import requests
-import base64
+import requests, base64, pickle
+from typing import List
 
 def get_login_details(data: str) -> str:
     """Return username and decoded password from binary file"""
@@ -15,3 +15,8 @@ def login(username: str, password: str) -> bool:
         return True
     else:
         return False
+
+def writebinary(file: str, details: List) -> None:
+    """Writes a binary file to a given location with the given details"""
+    with open(file, 'wb') as f:
+        pickle.dump(details, f)

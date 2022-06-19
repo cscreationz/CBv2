@@ -8,7 +8,6 @@ from PySide2 import QtCore
 from source.utils import cb_splashscreen, cb_initialize
 from source.window import cb_window
 from source.login import login_utils
-from ... import cb_utils
 
 extDataDir = os.getcwd()
 if getattr(sys, 'frozen', False):
@@ -38,15 +37,15 @@ class LoginPage(QWidget):
     def login_details(self) -> str:
         """Returns username and password from text box"""
         global username
-        username: str = self.ui.username_text.text()
-        password: str = self.ui.password_text.text()
+        username = self.ui.username_text.text()
+        password = self.ui.password_text.text()
         return username, password
 
     def save_details(self, password: str) -> None:
         """Create a binary file to save username and password"""
         if self.ui.checkBox.isChecked() and username != 'CB Launcher':
             details: List[str, bytes] = [username, self.encodepassword(password)]
-            cb_utils.writebinary(os.getcwd() + '\\config\\settings.dat', details)
+            login_utils.writebinary(os.path.abspath(rf"{os.getcwd()}/config/settings.dat"), details)
 
     def login(self):
         """Tests if login details are right. Displays invalid details if wrong"""
@@ -61,7 +60,7 @@ class LoginPage(QWidget):
     def skiplogin(self):
         """Sets username to CB Launcher (bot) and opens main window"""
         global username
-        username: str = 'CB Launcher'
+        username = 'CB Launcher'
         self.close()
         self.showMainWindow()
 

@@ -13,11 +13,11 @@ from PySide2.QtCore import (QCoreApplication, QPropertyAnimation, QDate, QDateTi
 from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont, QFontDatabase, QIcon, QKeySequence, QLinearGradient, QPalette, QPainter, QPixmap, QRadialGradient)
 from PySide2.QtWidgets import *      
 
-from cb_files.images import resource_rc
+from source.images import resource_rc
 
-from cb_files.resources import games
+from source.resources import games
 
-from cb_files.resources import font
+from source.resources import font
 
 class Ui_MainWindow(object):
     def setupUi(self, CBLauncher):

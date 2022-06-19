@@ -17,7 +17,7 @@ from PySide2.QtWidgets import *
 from PySide2 import QtCore
 from PySide2 import QtWidgets
 
-from cb_files.resources import font
+from source.resources import font
 
 class Ui_Form(object):
     def setupUi(self, Form):
